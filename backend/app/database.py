@@ -3,14 +3,29 @@ import bcrypt
 import os
 import sys
 from contextlib import contextmanager
+from pathlib import Path
+
+def _get_persistent_data_dir() -> Path:
+    if sys.platform.startswith("win"):
+        base = Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming"))
+    elif sys.platform == "darwin":
+        base = Path.home() / "Library" / "Application Support"
+    else:
+        base = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share"))
+
+    # Keep the folder name stable; changing it will create a new empty DB.
+    return base / "CSD-Feedback-Application"
+
 
 if getattr(sys, "frozen", False):
-    BASE_DIR = sys._MEIPASS
+    DATA_DIR = _get_persistent_data_dir()
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    DB_PATH = str(DATA_DIR / "store.db")
+    IMAGES_DIR = str(DATA_DIR / "images")
 else:
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-
-DB_PATH = os.path.join(BASE_DIR, "backend", "app", "store.db") if not getattr(sys, "frozen", False) else os.path.join(BASE_DIR, "app", "store.db")
-IMAGES_DIR = os.path.join(BASE_DIR, "backend", "images") if not getattr(sys, "frozen", False) else os.path.join(BASE_DIR, "images")
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(_file_)))
+    DB_PATH = os.path.join(BASE_DIR, "backend", "app", "store.db")
+    IMAGES_DIR = os.path.join(BASE_DIR, "backend", "images")
 
 
 @contextmanager
