@@ -1,0 +1,27 @@
+{
+    "appId": "com.csd.feedback-application",
+    "files": [
+        "dist-electron/**/*",
+        "dist-react/**/*"
+    ],
+    "extraResources": [
+        {
+            "from": "backend/dist/csd-feedback-server.exe",
+            "to": "backend/csd-feedback-server.exe"
+        }
+    ],
+    "icon": "./src/ui/assets/mcte-512.png",
+    "mac": {
+        "target": "dmg"
+    },
+    "linux": {
+        "target": "AppImage",
+        "category": "Utility"
+    },
+    "win": {
+        "target": [
+            "portable",
+            "msi"
+        ]
+    }
+}

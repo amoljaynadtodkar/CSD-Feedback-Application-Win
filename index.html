@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#10b981" />
+    <title>Store Manager</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+      script-src 'self';
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https: blob: http://localhost:8000;
+      font-src 'self' data:;
+      connect-src 'self' http://localhost:* ws://localhost:*;
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+      frame-ancestors 'none';"
+    />
+    <style>
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+      html, body {
+        touch-action: manipulation;
+        overscroll-behavior: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/ui/main.jsx"></script>
+  </body>
+</html>
