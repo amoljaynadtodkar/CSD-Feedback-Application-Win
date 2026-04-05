@@ -14,9 +14,9 @@
       content="default-src 'self';
       script-src 'self';
       style-src 'self' 'unsafe-inline';
-      img-src 'self' data: https: blob: http://localhost:8000;
+      img-src * data:blob:;
       font-src 'self' data:;
-      connect-src 'self' http://localhost:* ws://localhost:*;
+      connect-src 'self' http: https: ws: wss;
       object-src 'none';
       base-uri 'self';
       form-action 'self';

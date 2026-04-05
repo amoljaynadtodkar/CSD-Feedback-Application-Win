@@ -44,7 +44,7 @@ function ServerSettings() {
       ? `http://${serverIp.trim()}:8000`
       : "http://localhost:8000";
     try {
-      const res = await fetch(`${base}/categories`, { signal: AbortSignal.timeout(5000) });
+      const res = await fetch(`${base}/products/categories/public`, { signal: AbortSignal.timeout(5000) });
       if (res.ok) {
         setConnectionStatus("ok");
       } else {

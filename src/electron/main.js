@@ -228,11 +228,6 @@ app.on("ready", async () => {
     mainWindow.loadFile(uiPath);
   }
 
-  // Open DevTools in production for debugging
-  if (!isDev()) {
-    mainWindow.webContents.openDevTools();
-  }
-
   pollResources(mainWindow);
 
   ipcMainHandle("getStaticData", () => {

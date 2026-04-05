@@ -443,9 +443,6 @@ import_electron4.app.on("ready", async () => {
   } else {
     mainWindow.loadFile(uiPath);
   }
-  if (!isDev()) {
-    mainWindow.webContents.openDevTools();
-  }
   pollResources(mainWindow);
   ipcMainHandle("getStaticData", () => {
     return getStaticData();
